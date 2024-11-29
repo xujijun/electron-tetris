@@ -7,5 +7,9 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.formatOnType": false,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false
 }
