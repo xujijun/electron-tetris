@@ -56,6 +56,15 @@ class HighScoreManager {
     }
     return highScores.reduce((max, score) => (score.score > max.score ? score : max))
   }
+
+  async getHighScoreStr(): Promise<string> {
+    const highestScore = await this.getHighestScore()
+    if (highestScore) {
+      return highestScore.username + ' - ' + highestScore.score
+    } else {
+      return '无'
+    }
+  }
 }
 
 export default HighScoreManager

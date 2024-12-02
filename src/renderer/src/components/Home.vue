@@ -31,19 +31,24 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const currentScore = ref(0)
+const currentScore = ref(1000)
 const highestRecord = ref('')
 
-// 示例：在 mounted 时更新分数
+// 在 mounted 时更新分数
 onMounted(async () => {
-  currentScore.value = 100 // 示例值，可以根据实际情况更新
+  //currentScore.value = 100 // 示例值，可以根据实际情况更新
   highestRecord.value = await window.api.getHighestScore() // 示例值，可以根据实际情况更新
 })
 
-const startGame = () => {
+// 监听分数变化
+window.api.onHighScoreChanged((value) => {
+  highestRecord.value = value
+})
+
+const startGame = async () => {
   // 启动游戏逻辑
   //测试：
-  window.api.addHighScore('John Doe', Math.floor(Math.random() * 10000))
+  highestRecord.value = await window.api.addHighScore('John Doe', Math.floor(Math.random() * 10000))
 }
 </script>
 

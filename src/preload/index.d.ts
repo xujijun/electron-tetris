@@ -4,9 +4,9 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      addHighScore(username: string, score: number): unknown
+      addHighScore(username: string, score: number): string
       getHighestScore(): string
-      onHighScoreCleared(callback: () => void): unknown
+      onHighScoreChanged(callback: (value) => void): unknown
     }
   }
 }

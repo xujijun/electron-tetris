@@ -64,7 +64,7 @@ const clearAllScores = (mainWindow: BrowserWindow) => {
   })
   if (response === 0) {
     highScoreManager.clearAll().then(() => {
-      mainWindow.webContents.send('high-score-cleared')
+      mainWindow.webContents.send('high-score-changed', '无')
       dialog.showMessageBox({
         type: 'info',
         title: '历史高分',
