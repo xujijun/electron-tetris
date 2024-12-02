@@ -1,8 +1,13 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  addHighScore: (username: string, score: number) =>
+    ipcRenderer.invoke('add-high-score', username, score),
+  getHighestScore: () => ipcRenderer.invoke('get-highest-score'),
+  onHighScoreCleared: (callback) => ipcRenderer.on('high-score-cleared', callback) //声明一个可以绑定事件high-score-cleared处理器callback的api
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

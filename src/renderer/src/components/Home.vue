@@ -4,9 +4,7 @@
     <el-header height="60px" class="header">
       <el-row>
         <el-col :span="12">当前分数: {{ currentScore }}</el-col>
-        <el-col :span="12">
-          历史高分: {{ highestScore }} <el-button type="warning">重置</el-button>
-        </el-col>
+        <el-col :span="12"> 历史高分: {{ highestRecord }} </el-col>
       </el-row>
     </el-header>
 
@@ -24,24 +22,29 @@
     </el-container>
 
     <!-- 下部分 -->
-    <el-footer height="60px" class="footer"> <el-button type="primary">开始</el-button> </el-footer>
+    <el-footer height="60px" class="footer">
+      <el-button type="primary" @click="startGame">开始</el-button>
+    </el-footer>
   </el-container>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { ElContainer, ElHeader, ElAside, ElMain, ElFooter, ElRow, ElCol } from 'element-plus'
-
-// const components = { ElContainer, ElHeader, ElAside, ElMain, ElFooter, ElRow, ElCol };
 
 const currentScore = ref(0)
-const highestScore = ref(0)
+const highestRecord = ref('')
 
 // 示例：在 mounted 时更新分数
-onMounted(() => {
+onMounted(async () => {
   currentScore.value = 100 // 示例值，可以根据实际情况更新
-  highestScore.value = 200 // 示例值，可以根据实际情况更新
+  highestRecord.value = await window.api.getHighestScore() // 示例值，可以根据实际情况更新
 })
+
+const startGame = () => {
+  // 启动游戏逻辑
+  //测试：
+  window.api.addHighScore('John Doe', Math.floor(Math.random() * 10000))
+}
 </script>
 
 <style scoped>

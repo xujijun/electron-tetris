@@ -1,7 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { createMenu } from './menu'
+import { createIPCHandlers } from './service'
 
 function createWindow(): void {
   // Create the browser window.
@@ -16,6 +18,8 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  createMenu(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -50,7 +54,8 @@ app.whenReady().then(() => {
   })
 
   // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // ipcMain.on('ping', () => console.log('pong'))
+  createIPCHandlers()
 
   createWindow()
 
