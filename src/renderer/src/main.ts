@@ -1,5 +1,3 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'

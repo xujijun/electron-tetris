@@ -16,6 +16,7 @@ html {
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji';
 }
+
 #app {
   height: 100%;
   width: 100%;
