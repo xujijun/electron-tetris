@@ -10,6 +10,7 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 1000,
+    resizable: false, // 禁止调整窗口大小
     show: false,
     // autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),

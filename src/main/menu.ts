@@ -4,27 +4,27 @@ import { highScoreManager } from './service'
 const createMenu = (mainWindow: BrowserWindow) => {
   const menuTemplate = [
     {
-      label: '游戏',
+      label: 'Game',
       submenu: [
         {
-          label: '历史高分',
+          label: 'Top Scores',
           click: showRecentHighScores
         },
         {
-          label: '清空历史',
+          label: 'Clear Scores',
           click: () => clearAllScores(mainWindow)
         }
       ]
     },
     {
-      label: '帮助',
+      label: 'Help',
       submenu: [
         {
-          label: '关于',
+          label: 'About',
           click: about
         },
         {
-          label: '退出',
+          label: 'Exit',
           click: () => quit(mainWindow)
         }
       ]
